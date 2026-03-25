@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <title>Escena 3D educativa</title>
   <style>
-    body { margin:0; overflow:hidden; font-family: sans-serif; }
+    body { margin:0; overflow:hidden; font-family:sans-serif; }
     canvas { display:block; }
   </style>
 </head>
 <body>
 
-<!-- Three.js global -->
+<!-- Scripts globales de Three.js -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.160/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/controls/OrbitControls.js"></script>
 
@@ -37,7 +37,7 @@ scene.add(light);
 
 // ======== Objetos 3D ========
 
-// Cubo
+// Cubo verde
 const cube = new THREE.Mesh(
   new THREE.BoxGeometry(),
   new THREE.MeshStandardMaterial({ color: 0x00ff00 })
@@ -46,7 +46,7 @@ cube.position.x = -2;
 cube.userData.url = "https://es.wikipedia.org/wiki/Cubo";
 scene.add(cube);
 
-// Esfera
+// Esfera azul
 const sphere = new THREE.Mesh(
   new THREE.SphereGeometry(0.7, 32, 32),
   new THREE.MeshStandardMaterial({ color: 0x2194ce })
@@ -55,7 +55,7 @@ sphere.position.x = 2;
 sphere.userData.url = "https://es.wikipedia.org/wiki/Esfera";
 scene.add(sphere);
 
-// Texto 3D simulado con canvas
+// Texto “Haz clic aquí” como plano
 const canvas = document.createElement('canvas');
 canvas.width = 256;
 canvas.height = 128;
@@ -66,7 +66,7 @@ ctx.fillText("Haz clic aquí", 20, 70);
 
 const texture = new THREE.CanvasTexture(canvas);
 const textMesh = new THREE.Mesh(
-  new THREE.PlaneGeometry(2, 1),
+  new THREE.PlaneGeometry(2,1),
   new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide })
 );
 textMesh.position.y = 2;
@@ -107,7 +107,7 @@ animate();
 
 // ======== Ajuste de pantalla ========
 window.addEventListener("resize", () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = window.innerWidth/window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
